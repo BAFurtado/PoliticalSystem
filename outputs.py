@@ -7,9 +7,13 @@ class Projects:
         self.id = i
         self.ideology = ideology
         self.category = None
+        self.vote = 0
+
+    def cast_vote(self):
+        self.vote += 1
 
     def __str__(self):
-        return 'Id: {}, ideology: {:.4f}'.format(self.id, self.ideology)
+        return 'Id: {}, ideology: {:.4f}, votes: {}'.format(self.id, self.ideology, self.vote)
 
 
 if __name__ == '__main__':

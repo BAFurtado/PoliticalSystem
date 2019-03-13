@@ -17,3 +17,6 @@ rep_ideology = np.random.normal(mu, sigma, num_representatives)
 # Tolerance is drawn from a uniform distribution
 rep_tolerance = np.random.uniform(size=num_representatives)
 num_rep_projects = 1
+# Legislative bodies
+num_projects = 100
+
