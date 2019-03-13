@@ -6,8 +6,8 @@ from representatives import Representative
 
 
 class Government(Representative):
-    def __init__(self, i):
-        super().__init__(i)
+    def __init__(self, i, id, tol):
+        super().__init__(i, id, tol)
 
 
 if __name__ == '__main__':
