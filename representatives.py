@@ -16,6 +16,9 @@ class Representative:
             self.ideology = ideo
             self.tolerance = tol
 
+    def __str__(self):
+        return 'Id: {}, ideology: {:.4f}, tolerance:{:.4f}'.format(self.id, self.ideology, self.tolerance)
+
 
 if __name__ == '__main__':
     a = Representative(0)
