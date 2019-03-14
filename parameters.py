@@ -6,7 +6,7 @@ import numpy as np
 periods = 10
 num_representatives = 503
 # Government
-gov_ideology = .6
+gov_ideology = .1
 gov_tolerance = .2
 num_g_projects = 8
 # Representative
@@ -19,6 +19,3 @@ rep_tolerance = np.random.uniform(size=num_representatives)
 num_rep_projects = 1
 # Legislative bodies
 num_projects = 100
-# Limite para aprovação: 300 votos
-limit = 300
-

@@ -11,4 +11,4 @@ class Government(Representative):
 
 
 if __name__ == '__main__':
-    g = Government(0)
+    g = Government(0, .5, .1)

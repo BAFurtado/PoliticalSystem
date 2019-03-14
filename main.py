@@ -43,10 +43,11 @@ def voting(projs, repr):
     return projs
 
 
-def approve(projs, threshold):
+def approve(projs):
     approved = []
     for each in projs:
-        if each.vote > threshold:
+        # Majoriity rule for approval
+        if each.vote > (parameters.num_representatives / 2) + 1:
             each.define_category('approved')
             approved.append(each)
         else:
@@ -76,21 +77,23 @@ def main():
     print('There are {} projects, with average ideology of {:.4f}'.
           format(len(projs), sum([x.ideology for x in projs])/len(projs)))
     voted = voting(to_vote, rep)
-    aprov = approve(voted, parameters.limit)
+    aprov = approve(voted)
     sanction = government_decision(gov, aprov)
-    return aprov, projs, gov_projs, voted, sanction
+    return aprov, projs, gov_projs, voted, sanction, gov, rep
 
 
 if __name__ == '__main__':
-    a, p, g, v, s = main()
+    a, p, g, v, s, gov, rep = main()
+    print('Government: ')
+    print(gov)
     # Sorting projects by number of votes
     p.sort(key=lambda x: x.vote, reverse=True)
-    print('Top voted')
+    print('\nTop voted')
     [print(i) for i in p[:3]]
-    print('Least voted, but approved')
+    print('\nLeast voted, but approved')
     [print(i) for i in a[-3:]]
-    print('Proposed, not voted')
+    print('\nProposed, not voted')
     [print(i) for i in p[-3:]]
-    print('Government projects')
-    [print(i) for i in g[-3:]]
+    print('\nGovernment projects')
+    [print(i) for i in g]
 
