@@ -6,8 +6,8 @@ import numpy as np
 periods = 10
 num_representatives = 503
 # Government
-gov_ideology = .1
-gov_tolerance = .2
+gov_ideology = .5
+gov_tolerance = .1
 num_g_projects = 8
 # Representative
 mu = .5

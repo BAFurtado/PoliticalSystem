@@ -1,12 +1,12 @@
 """ Run the procedures of the model
 """
 
-from government import Government
-import parameters
-from representatives import Representative
-from outputs import Projects
-
 import numpy as np
+
+import parameters
+from government import Government
+from projects import Projects
+from representatives import Representative
 
 
 def generate_population():
@@ -32,7 +32,10 @@ def create_projects(g, reps):
 
 
 def projects_to_analyze(projs):
-    return np.random.choice(projs[parameters.num_g_projects:], parameters.num_projects, replace=False).tolist()
+    order_day = np.random.choice(projs[parameters.num_g_projects:], parameters.num_projects, replace=False).tolist()
+    for each in order_day:
+        each.define_category('order of the day')
+    return order_day
 
 
 def voting(projs, repr):
@@ -46,7 +49,7 @@ def voting(projs, repr):
 def approve(projs):
     approved = []
     for each in projs:
-        # Majoriity rule for approval
+        # Majority rule for approval
         if each.vote > (parameters.num_representatives / 2) + 1:
             each.define_category('approved')
             approved.append(each)
@@ -62,28 +65,31 @@ def government_decision(g, s):
             p.define_category('sanctioned')
         else:
             p.define_category('not sanctioned')
-    return s
 
 
 def main():
     gov, rep = generate_population()
     projs = create_projects(gov, rep)
+
     # Separating government projects
     gov_projs = projs[:parameters.num_g_projects]
+
     # Choosing a sample of projects. All government included
     to_vote = projects_to_analyze(projs)
+
     # Adding all of government projects
     to_vote.extend(gov_projs)
     print('There are {} projects, with average ideology of {:.4f}'.
           format(len(projs), sum([x.ideology for x in projs])/len(projs)))
+
     voted = voting(to_vote, rep)
     aprov = approve(voted)
-    sanction = government_decision(gov, aprov)
-    return aprov, projs, gov_projs, voted, sanction, gov, rep
+    government_decision(gov, aprov)
+    return projs, gov, rep
 
 
 if __name__ == '__main__':
-    a, p, g, v, s, gov, rep = main()
+    p, gov, rep = main()
     print('Government: ')
     print(gov)
     # Sorting projects by number of votes
