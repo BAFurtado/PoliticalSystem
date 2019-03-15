@@ -4,3 +4,7 @@
 Originally conceived by Danilo Delôgo
 
 Implemented by Bernardo A Furtado
+
+### Running
+
+python resuls.py

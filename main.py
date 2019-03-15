@@ -102,4 +102,3 @@ if __name__ == '__main__':
     [print(i) for i in p[-3:]]
     print('\nGovernment projects')
     [print(i) for i in g]
-

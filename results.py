@@ -4,6 +4,9 @@ import main
 
 p, gov, rep = main.main()
 
+print('Government ideology {:.3f}'.format(gov.ideology))
+print('House ideology {:.3f}'.format(sum([x.ideology for x in rep])/len(rep)))
+
 res = defaultdict(lambda: defaultdict(float))
 for each in p:
     res[each.category]['num'] += 1
