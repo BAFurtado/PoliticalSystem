@@ -3,19 +3,24 @@
 
 import numpy as np
 
-periods = 10
-num_representatives = 503
-# Government
-gov_ideology = .5
-gov_tolerance = .1
-num_g_projects = 8
-# Representative
-mu = .2
-sigma = .1
-# Initially, ideology is drawn from a Normal distribution with mu and sigma values
-rep_ideology = np.random.normal(mu, sigma, num_representatives)
-# Tolerance is drawn from a uniform distribution
-rep_tolerance = np.random.uniform(size=num_representatives)
-num_rep_projects = 1
-# Legislative bodies
-num_projects = 100
+
+def gen_distributions(p):
+    rep_ideology = np.random.normal(p['mu'], p['sigma'], p['num_representatives'])
+    rep_tolerance = np.random.uniform(size=p['num_representatives'])
+    p['rep_ideology'] = rep_ideology
+    p['rep_tolerance'] = rep_tolerance
+    return p
+
+
+def parameters():
+    par = {'periods': 10, 'num_representatives': 503,
+           # Government]
+           'gov_ideology': .5, 'gov_tolerance': .1, 'num_g_projects': 8,
+           # Representative
+           'mu': .2, 'sigma': .1,
+           # Tolerance is drawn from a uniform distribution
+           'num_rep_projects': 1,
+           # Legislative bodies
+           'num_projects': 100}
+    par = gen_distributions(par)
+    return par
