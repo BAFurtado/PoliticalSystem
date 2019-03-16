@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 import matplotlib.pyplot as plt
-
+import pandas as pd
 import main
 from parameters import parameters
 
@@ -19,13 +19,17 @@ def results(projects):
         res[each.category]['ideology'] += each.ideology
         res[each.category]['votes'] += each.vote
 
+    avg_ideology = dict()
+
     for key in res.keys():
+        _avg_ideology = res[key]['ideology'] / res[key]['num']
+        avg_ideology[key] = _avg_ideology
         print('Total projects {} {:.0f}. Average ideology {:.3f}. Average votes received {:.1f}'.
-              format(key, res[key]['num'], res[key]['ideology'] / res[key]['num'], res[key]['votes'] / res[key]['num']))
-    return res
+              format(key, res[key]['num'], _avg_ideology, res[key]['votes'] / res[key]['num']))
+    return avg_ideology
 
 
-def plotting(data, res, name='single'):
+def plotting(data, name='single'):
     # Single plotting
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
@@ -66,5 +70,5 @@ def plotting(data, res, name='single'):
 
 
 if __name__ == '__main__':
-    r = results(p)
-    plotting(p, r)
+    avg = results(p)
+    plotting(p)
