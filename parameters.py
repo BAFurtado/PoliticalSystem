@@ -15,9 +15,9 @@ def gen_distributions(p):
 def parameters():
     par = {'periods': 10, 'num_representatives': 503,
            # Government]
-           'gov_ideology': .5, 'gov_tolerance': .1, 'num_g_projects': 8,
+           'gov_ideology': .4, 'gov_tolerance': .1, 'num_g_projects': 8,
            # Representative
-           'mu': .2, 'sigma': .1,
+           'mu': .6, 'sigma': .1,
            # Tolerance is drawn from a uniform distribution
            'num_rep_projects': 1,
            # Legislative bodies

@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 import matplotlib.pyplot as plt
-import pandas as pd
+
 import main
 from parameters import parameters
 
@@ -37,7 +37,7 @@ def plotting(data, name='single'):
     legend = ['sanctioned', 'not sanctioned', 'proposed']
     colors = ['red', 'blue', 'grey']
     for i, k in enumerate(legend):
-        ax.hist([x.ideology for x in data if x.category == k], bins=100, alpha=.5, color=colors[i])
+        ax.hist([x.ideology for x in data if x.category == k], bins=50, alpha=.35, color=colors[i])
 
     ax.legend(legend)
     ax.set(xlabel='Ideology', ylabel='Frequency', title='Projects by output')

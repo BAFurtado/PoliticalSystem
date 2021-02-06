@@ -7,4 +7,4 @@ Implemented by Bernardo A Furtado
 
 ### Running
 
-python resuls.py
+python results.py
